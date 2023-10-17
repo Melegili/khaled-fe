@@ -1,0 +1,15 @@
+[
+  {"label":"CNFRM_CHANGE_PASSCODE", "value":"CNFRM_CHANGE_PASSCODE"},
+  {"label":"CNFRM_NEW_DEVICE", "value":"CNFRM_NEW_DEVICE"},
+  {"label":"FRAUD_LOGIN", "value":"FRAUD_LOGIN"},
+  {"label":"FRAUD_UNCOMMON_LOCATION", "value":"FRAUD_UNCOMMON_LOCATION"},
+  {"label":"FRAUD_BLOCKED_COUNTRY", "value":"FRAUD_BLOCKED_COUNTRY"},
+  {"label":"FRAUD_ENABLED_VPN", "value":"FRAUD_ENABLED_VPN"},
+  {"label":"CNFRM_ACTIVATION", "value":"CNFRM_ACTIVATION"},
+  {"label":"WALLET_SCAM", "value":"WALLET_SCAM"},
+  {"label":"CUSTOMER_REQUEST", "value":"CUSTOMER_REQUEST"},
+  {"label":"FRAUD_TRANSACTION", "value":"FRAUD_TRANSACTION"},
+  {"label":"BLOCKED_BY_FAMILY_HEAD", "value":"BLOCKED_BY_FAMILY_HEAD"},
+  {"label":"TBW", "value":"TBW"},
+  {"label":"SUSPICION", "value":"SUSPICION"}
+]

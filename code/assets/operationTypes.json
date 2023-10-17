@@ -1,0 +1,5 @@
+{
+  "INSERT": {"labelEn": "INSERT", "labelAr": "اضافة" },
+  "UPDATE": {"labelEn": "UPDATE", "labelAr": "تغيير" },
+  "DELETE": {"labelEn": "DELETE", "labelAr": "حذف" }
+}

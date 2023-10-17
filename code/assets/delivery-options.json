@@ -1,0 +1,20 @@
+{
+  "WILL_CALL": { "labelEn":"10 Minute Service", "labelAr": "10 Minute Service" },
+  "WILLCALL_TO": { "labelEn": "10 Minute Service to", "labelAr": "10 Minute Service to" },
+  "CAMBIO_PLUS": { "labelEn": "10 Minute Service", "labelAr": "10 Minute Service" },
+  "HDS_USD": { "labelEn": "Home Delivery USD", "labelAr": "Home Delivery USD" },
+  "HDS_LOCAL": { "labelEn": "Home Delivery DOP", "labelAr": "Home Delivery DOP" },
+  "HOME_DELIVERY": { "labelEn": "Home Delivery", "labelAr": "Home Delivery" },
+  "CARD_DEPOSIT": { "labelEn": "Send to a Card", "labelAr": "Send to a Card" },
+  "BANK_DEPOSIT": { "labelEn": "Account Deposit", "labelAr": "Account Deposit" },
+  "RECEIVE_AT": { "labelEn": "Bancomer Transfer Services, Inc.", "labelAr": "Bancomer Transfer Services, Inc." },
+  "LTD_WILLCALL": { "labelEn": "10 Minute Service at", "labelAr": "10 Minute Service at" },
+  "OVERNIGHT": { "labelEn": "Overnight pick-up after 7am at any ", "labelAr": "Overnight pick-up after 7am at any " },
+  "ONLY_AT": { "labelEn": "10 minute service to Walmart", "labelAr": "10 minute service to Walmart" },
+  "OVERNIGHT2ANY": { "labelEn": "Overnight Available after 7am", "labelAr": "Overnight Available after 7am" },
+  "24_HOUR": { "labelEn": "24 Hour Service", "labelAr": "24 Hour Service" },
+  "48_HOUR": { "labelEn": "48 Hour Service", "labelAr": "48 Hour Service" },
+  "MOBILE_WALLET": { "labelEn": "MOBILE WALLET", "labelAr": "MOBILE WALLET" },
+  "DIRECT_TO_ACCT": { "labelEn": "Send to Wallet", "labelAr": "Send to Wallet" },
+  "2_HOUR": { "labelEn": "2 Hour Service", "labelAr": "2 Hour Service" }
+}

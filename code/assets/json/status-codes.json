@@ -1,0 +1,9 @@
+{
+    "statusCode": {
+        "E460045": "LIST_IS_EMPTY",
+        "E490003": "LOV_IS_EMPTY",
+        "E490004": "LIST_IS_EMPTY",
+        "E490015": "PRODUCT_TIERS_LIST_IS_EMPTY",
+        "E490006": "PRODUCT_TIER_NOT_FOUND"
+    }
+}

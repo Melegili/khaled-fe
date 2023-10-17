@@ -1,0 +1,147 @@
+// Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css
+
+// ==========================================================================
+// Print styles.
+// Inlined to avoid the additional HTTP request: h5bp.com/r
+// ==========================================================================
+
+// @media print {
+//   *,
+//   *::before,
+//   *::after {
+//     text-shadow: none !important;
+//     box-shadow: none !important;
+//   }
+
+//   a,
+//   a:visited {
+//     text-decoration: underline;
+//   }
+
+//   abbr[title]::after {
+//     content: " (" attr(title) ")";
+//   }
+
+//   pre,
+//   blockquote {
+//     border: $border-width solid #999;
+//     page-break-inside: avoid;
+//   }
+
+//   thead {
+//     display: table-header-group; // h5bp.com/t
+//   }
+
+//   tr,
+//   img {
+//     page-break-inside: avoid;
+//   }
+
+//   img {
+//     max-width: 100% !important;
+//   }
+
+//   p,
+//   h2,
+//   h3 {
+//     orphans: 3;
+//     widows: 3;
+//   }
+
+//   h2,
+//   h3 {
+//     page-break-after: avoid;
+//   }
+
+//   // Bootstrap specific changes start
+
+//   // Bootstrap components
+//   .navbar {
+//     display: none;
+//   }
+//   .btn,
+//   .dropup > .btn {
+//     > .caret {
+//       border-top-color: #000 !important;
+//     }
+//   }
+//   .label {
+//     border: $border-width solid #000;
+//   }
+
+//   .table {
+//     border-collapse: collapse !important;
+
+//     td,
+//     th {
+//       background-color: #fff !important;
+//     }
+//   }
+//   .table-bordered {
+//     th,
+//     td {
+//       border: 1px solid #ddd !important;
+//     }
+//   }
+
+//   // Bootstrap specific changes end
+// }
+
+
+
+@media print {
+  @page {
+    size: 7in 9.25in !important;
+    size: auto !important;
+    margin: 27mm 16mm 27mm 16mm;
+  }
+  .col-grid-1, .col-grid-2, .col-grid-3, .col-grid-4, .col-grid-5, .col-grid-6, .col-grid-7, .col-grid-8, .col-grid-9, .col-grid-10, .col-grid-11, .col-grid-12 {
+    float: right !important;
+    width: 100% !important;
+  }
+  .col-grid-12 {
+    width: 100%;
+  }
+  .col-grid-11 {
+    width: 100%!important;
+  }
+  .col-grid-10 {
+    width: 100%!important;
+  }
+  .col-grid-9 {
+    width: 75%;
+  }
+  .col-grid-8 {
+    width: 100%!important;
+  }
+  .col-grid-7 {
+    width: 0%!important;
+  }
+  .col-grid-6 {
+    width: 100%!important;
+  }
+  .col-grid-5 {
+    width: 100%!important;
+  }
+  .col-grid-4 {
+    width: 100%!important;
+  }
+  .col-grid-3 {
+    width: 100%!important;
+  }
+  .col-grid-2 {
+    width: 100%!important;
+  }
+  .col-grid-1 {
+    width: 100%!important;
+  }
+  hr {
+    display: none !important;
+  }
+  header, footer, aside, nav, form, iframe {
+    display: none !important;
+  }
+}
+
+
+

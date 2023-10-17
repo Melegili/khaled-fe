@@ -1,0 +1,16 @@
+1- Download dist.zip file
+2- Delete old code folder
+3- Get the new dist.zip file here
+4- Extract dist.zip 
+5- Delete dist.zip
+6- Rename dist folder to code
+7- Open cmd
+8- Run BuildPush.bat
+9- Mark the pushed image id
+10- Open quay.io
+11- Ensure that the image is pushed recently with the marked id
+12- Connect to non-prod bastion node
+13- Switch to root
+14- Connect to OpenShift
+15- Connect to non-cp4i-sit project (oc project non-cp4i-sit)
+16- Import the new image to the image stream (oc import-image backoffice-frontend-test:test)
