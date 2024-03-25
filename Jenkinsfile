@@ -17,7 +17,7 @@ pipeline {
         stage('Cloning git') {
             steps {
                 script {
-                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/***********/CI-CD-PIPELINE.git']])
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Melegili/khaled-fe.git']])
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    docker.withRegistry('https://****************.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {                    
+                    docker.withRegistry('https://hub.docker.com/repository/docker/hollz/test/general') {                    
                     dockerImage.push("${env.BUILD_NUMBER}")
                     dockerImage.push("latest")
                     }
@@ -48,7 +48,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
                     sh '''
                     
-                        git pull https://github.com/****************/CI-CD-PIPELINE.git
+                        git pull https://github.com/Melegili/khaled-fe.git
                         git config  user.email "****************.com"
                         git config  user.name "****************"
                         BUILD_NUMBER=${BUILD_NUMBER}
