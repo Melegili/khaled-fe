@@ -33,9 +33,7 @@ pipeline {
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    docker.withRegistry('docker push hollz/test') {                    
-                    dockerImage.push("${env.BUILD_NUMBER}")
-                    dockerImage.push("latest")
+                    sudo docker push hollz/test:latest
                     }
                 }
             }
