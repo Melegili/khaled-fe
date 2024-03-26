@@ -33,7 +33,7 @@ pipeline {
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    sudo docker push hollz/test:latest
+                    dockerBuild = sudo docker push hollz/test:latest
                     }
                 }
             }
