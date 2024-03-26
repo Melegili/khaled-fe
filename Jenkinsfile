@@ -1,11 +1,9 @@
 pipeline {
     agent any
     environment {
-        AWS_ACCOUNT_ID="****************"
-        AWS_DEFAULT_REGION="US-EAST-2"
-        IMAGE_REPO_NAME="cipipeline"
+        IMAGE_REPO_NAME="khaled-fe"
         IMAGE_TAG="latest"
-        REPOSITORY_URI= "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+        REPOSITORY_URI= "https://github.com/Melegili/khaled-fe.git"
     }
 
     stages {
