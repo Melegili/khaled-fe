@@ -37,7 +37,6 @@ pipeline {
                     }
                 }
             }
-        }
         stage ('Updating the Deployment File') {
             environment {
                 GIT_REPO_NAME = "khaled-fe"
