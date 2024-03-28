@@ -26,7 +26,7 @@ pipeline {
         stage ('Building Image') {
             steps {
                 script {
-                    sh "dockerImage = sudo docker build -f Dockerfile.dockerfile ." 
+                    sh "dockerImage = sudo docker build -f Dockerfile.dockerfile . -t hollz/test:test" 
                 }
             }
         }
