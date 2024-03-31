@@ -26,14 +26,14 @@ pipeline {
         stage ('Building Image') {
             steps {
                 script {
-                    sh "docker build -f Dockerfile.dockerfile . -t hollz/test:${build.id}" 
+                    sh "docker build -f Dockerfile.dockerfile . -t hollz/test:$BUILD_NUMBER" 
                 }
             }
         }
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    sh "docker push hollz/test:${build.id}" 
+                    sh "docker push hollz/test:$BUILD_NUMBER" 
                     }
                 }
             }
