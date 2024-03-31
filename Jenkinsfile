@@ -4,9 +4,6 @@ pipeline {
         IMAGE_REPO_NAME="khaled-fe"
         IMAGE_TAG="latest"
         REPOSITORY_URI= "https://github.com/Melegili/khaled-fe.git"
-        def server = Artifactory.server '<ArtifactoryServerID>'
-        def rtDocker = Artifactory.docker server: server
-        def buildInfo = rtDocker.push '<artifactoryDockerRegistry>/hello-world:latest', '<targetRepo>'
     }
 
     stages {
