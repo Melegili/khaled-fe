@@ -40,7 +40,7 @@ pipeline {
         stage ('Updating the Deployment File') {
             environment {
                 GIT_REPO_NAME = "khaled-fe"
-                GIT_USER_NAME = "Melegili"
+                GIT_USER_NAME = "melegili"
             }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
@@ -48,7 +48,7 @@ pipeline {
                     
                         git pull https://github.com/Melegili/khaled-fe.git
                         git config  user.email "mohamed_elegili@outlook.com"
-                        git config  user.name "Melegili"
+                        git config  user.name "melegili"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" khaled-fe/deployments.yml
                         git add khaled-fe/deployments.yml
