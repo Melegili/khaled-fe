@@ -26,14 +26,14 @@ pipeline {
         stage ('Building Image') {
             steps {
                 script {
-                    sh "dockerImage = sudo docker build -f Dockerfile.dockerfile . -t hollz/test:dev" 
+                    sh "dockerImage = sudo docker build -f Dockerfile.dockerfile . -t hollz/test:poc" 
                 }
             }
         }
         stage ('Pushing to ECR') {
             steps {
                 script{
-                    sh "dockerPush = sudo docker push hollz/test:test" 
+                    sh "dockerPush = sudo docker push hollz/test:poc" 
                     }
                 }
             }
