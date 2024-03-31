@@ -4,6 +4,9 @@ pipeline {
         IMAGE_REPO_NAME="khaled-fe"
         IMAGE_TAG="latest"
         REPOSITORY_URI= "https://github.com/Melegili/khaled-fe.git"
+        def server = Artifactory.server '<ArtifactoryServerID>'
+        def rtDocker = Artifactory.docker server: server
+        def buildInfo = rtDocker.push '<artifactoryDockerRegistry>/hello-world:latest', '<targetRepo>'
     }
 
     stages {
@@ -37,29 +40,6 @@ pipeline {
                     }
                 }
             }
-        stage ('Updating the Deployment File') {
-            environment {
-                GIT_REPO_NAME = "khaled-fe"
-                GIT_USER_NAME = "melegili"
-            }
-            steps {
-                withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]){
-                    sh '''
-                    
-                        git pull https://github.com/Melegili/khaled-fe.git
-                        git config  user.email "mohamed_elegili@outlook.com"
-                        git config  user.name "melegili"
-                        BUILD_NUMBER=${BUILD_NUMBER}
-                        sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" khaled-fe/deployments.yml
-                        git add khaled-fe/deployments.yml
-                        git commit -m "updated the image ${BUILD_NUMBER}"
-                        git push @github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME">https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-                        
-                       
-                    '''
-                }
-            }
-        }
     }
 
 }
