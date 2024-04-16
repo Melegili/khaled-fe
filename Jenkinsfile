@@ -26,7 +26,7 @@ pipeline {
             steps {
                 //sh  "docker.build ${DOCKER_REGISTRY} ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 //sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
-                sh "docker login -u ${REGISTRY_USER} -p ${JFROG_REGISTRY_PASSWORD} ${DOCKER_REGISTRY}"
+                sh "docker login -u $REGISTRY_USER -p $JFROG_REGISTRY_PASSWORD"
                 sh "docker build -f Dockerfile.dockerfile . -t hollz/test:$BUILD_NUMBER" 
                 //script {
                 //    docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
@@ -35,7 +35,6 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                sh "docker login -u ${REGISTRY_USER} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
                 sh "docker push hollz/test:$BUILD_NUMBER"
                 //sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 
