@@ -5,7 +5,7 @@ pipeline {
         //JFROG_USER = credentials('jfrog-username')
         //JFROG_URL = 'https://jfrog.example.com/artifactory'
         //JFROG_PASSWORD = credentials('jfrog-password')
-        DOCKER_REGISTRY = 'hollz/test'
+        DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/hollz/test'
         ANGULAR_PROJECT = 'your-angular-project-name'
         DOCKER_IMAGE_NAME = 'devops'
         //OPENSHIFT_SERVER = 'your-openshift-server-url'
