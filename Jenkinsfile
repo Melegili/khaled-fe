@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // Define environment variables such as JFrog and OpenShift credentials
-        JFROG_USER = credentials('hollz')
+        //JFROG_USER = credentials('hollz')
         //JFROG_URL = 'https://jfrog.example.com/artifactory'
         //JFROG_PASSWORD = credentials('dckr_pat_MzuXXKgzGV6qXv9q1YvjR16XCD4')
         DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/hollz/test'
