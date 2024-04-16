@@ -68,22 +68,22 @@ pipeline {
             }
         }
         //stage('Sync with ArgoCD') {
-            //steps {
-             //   script {
-                    // Code to trigger ArgoCD sync
-               // }
-          //  }
+        //    steps {
+        //        script {
+        //            // Code to trigger ArgoCD sync
+        //        }
+        //    }
         //}
     }    
-    def deployToOpenShift(environment) {
-        openshift.withCluster() {
-            openshift.withProject(env.OPENSHIFT_PROJECT) {
-                openshift.deploy("your-app-name-${environment}") {
-                    container {
-                        image("${JFROG_REPO}:${env.BRANCH_NAME}")
+        def deployToOpenShift(environment) {
+            openshift.withCluster() {
+                openshift.withProject(env.OPENSHIFT_PROJECT) {
+                    openshift.deploy("your-app-name-${environment}") {
+                        container {
+                            image("${JFROG_REPO}:${env.BRANCH_NAME}")
+                        }
                     }
                 }
             }
         }
-    }
 }
