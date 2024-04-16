@@ -36,8 +36,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
-                
-                sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
+                sh "docker push hollz/$DOCKER_IMAGE_NAME:$BUILD_NUMBER/$env.BRANCH_NAME"
+                //sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 
             }
         }
