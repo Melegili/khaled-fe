@@ -2,19 +2,19 @@ pipeline {
     agent any
     environment {
         // Define environment variables such as JFrog and OpenShift credentials
-        REGISTRY_USER = "$JF_REGISTRY_USER"
+        //REGISTRY_USER = "$JF_REGISTRY_USER"
         //JFROG_URL = 'https://jfrog.example.com/artifactory'
-        JFROG_REGISTRY_PASSWORD = "$JFROG_PASSWORD"
+        //JFROG_REGISTRY_PASSWORD = "$JFROG_PASSWORD"
         //DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/hollz/test'
-        ANGULAR_PROJECT = 'your-angular-project-name'
-        DOCKER_IMAGE_NAME = 'devops'
+        //ANGULAR_PROJECT = 'your-angular-project-name'
+        //DOCKER_IMAGE_NAME = 'devops'
         //OPENSHIFT_SERVER = 'your-openshift-server-url'
         //OPENSHIFT_TOKEN = credentials('openshift-token')
         //ARGOCD_SERVER = 'your-argocd-server-url'
         //ARGOCD_TOKEN = credentials('argocd-token')
-        DOCKER_IMAGE_TAG = 'latest'
+        //DOCKER_IMAGE_TAG = 'latest'
         //NODE_ENV = 'production'
-        BRANCH_NAME = "${env.BRANCH_NAME}"
+        //BRANCH_NAME = "${env.BRANCH_NAME}"
     }
     stages {
         stage('Checkout') {
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 //sh  "docker.build ${DOCKER_REGISTRY} ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 //sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
-                sh "docker login -u ${REGISTRY_USER} -p ${JFROG_REGISTRY_PASSWORD}"
+                sh "docker login -u $REGISTRY_USER -p $JFROG_PASSWORD"
                 sh "docker build -f Dockerfile.dockerfile . -t hollz/test:$BUILD_NUMBER" 
                 //script {
                 //    docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
