@@ -76,9 +76,7 @@ pipeline {
              prune: true
              selfHeal: true
              """
-                {
                     sh 'argocd apply -f argocd-app.yaml'
-                }
             }
         }
         stage('Deploy to OpenShift QA') {
@@ -124,9 +122,7 @@ pipeline {
              prune: true
              selfHeal: true
              """
-                {
                     sh 'argocd apply -f argocd-app.yaml'
-                }
             }
         }
         stage('Deploy to OpenShift Production') {
@@ -168,9 +164,7 @@ pipeline {
              prune: true
              selfHeal: true
              """
-                {
                     sh 'argocd apply -f argocd-app.yaml'
-                }
             }
         }
         //stage('Sync with ArgoCD') {
