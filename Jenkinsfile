@@ -5,7 +5,7 @@ pipeline {
         //JFROG_USER = credentials('jfrog-username')
         //JFROG_URL = 'https://jfrog.example.com/artifactory'
         //JFROG_PASSWORD = credentials('jfrog-password')
-        DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/hollz/test'
+        DOCKER_REGISTRY = 'hollz/test'
         ANGULAR_PROJECT = 'your-angular-project-name'
         DOCKER_IMAGE_NAME = 'devops'
         //OPENSHIFT_SERVER = 'your-openshift-server-url'
@@ -24,16 +24,15 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
+                
+                  sh  "docker.build ${DOCKER_REGISTRY} ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
-                sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
-                script {
-                    docker.push("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
+                  sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
+                  sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
                 }
             }
         }
