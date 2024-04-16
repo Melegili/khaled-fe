@@ -75,15 +75,4 @@ pipeline {
         //    }
         //}
     }    
-        def deployToOpenShift(environment) {
-            openshift.withCluster() {
-                openshift.withProject(env.OPENSHIFT_PROJECT) {
-                    openshift.deploy("your-app-name-${environment}") {
-                        container {
-                            image("${JFROG_REPO}:${env.BRANCH_NAME}")
-                        }
-                    }
-                }
-            }
-        }
 }
