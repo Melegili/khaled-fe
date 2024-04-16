@@ -13,8 +13,8 @@ pipeline {
         //ARGOCD_SERVER = 'your-argocd-server-url'
         //ARGOCD_TOKEN = credentials('argocd-token')
         //DOCKER_IMAGE_TAG = 'latest'
-        //NODE_ENV = 'production'
-        //BRANCH_NAME = "${env.BRANCH_NAME}"
+        NODE_ENV = 'production'
+        BRANCH_NAME = "${env.BRANCH_NAME}"
     }
     stages {
         stage('Checkout') {
