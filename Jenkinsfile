@@ -2,9 +2,9 @@ pipeline {
     agent any
     environment {
         // Define environment variables such as JFrog and OpenShift credentials
-        //JFROG_USER = credentials('jfrog-username')
+        JFROG_USER = credentials('hollz')
         //JFROG_URL = 'https://jfrog.example.com/artifactory'
-        //JFROG_PASSWORD = credentials('jfrog-password')
+        JFROG_PASSWORD = credentials('dckr_pat_MzuXXKgzGV6qXv9q1YvjR16XCD4')
         DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/hollz/test'
         ANGULAR_PROJECT = 'your-angular-project-name'
         DOCKER_IMAGE_NAME = 'devops'
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 //sh  "docker.build ${DOCKER_REGISTRY} ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 //sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
-                sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
+                sh "docker login -u ${JFROG_USER} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
                 script {
                     docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
                 }
