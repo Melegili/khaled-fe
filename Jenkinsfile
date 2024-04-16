@@ -133,7 +133,6 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy to OpenShift Production') {
             when {
                 branch 'master'
@@ -189,5 +188,5 @@ pipeline {
         //        }
         //    }
         //}
-    }    
+    }
 }
