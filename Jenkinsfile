@@ -2,18 +2,18 @@ pipeline {
     agent any
     environment {
         // Define environment variables such as JFrog and OpenShift credentials
-        JFROG_USER = credentials('jfrog-username')
-        JFROG_URL = 'https://jfrog.example.com/artifactory'
-        JFROG_PASSWORD = credentials('jfrog-password')
-        DOCKER_REGISTRY = 'your-docker-registry-url'
+        //JFROG_USER = credentials('jfrog-username')
+        //JFROG_URL = 'https://jfrog.example.com/artifactory'
+        //JFROG_PASSWORD = credentials('jfrog-password')
+        DOCKER_REGISTRY = 'hollz/test'
         ANGULAR_PROJECT = 'your-angular-project-name'
-        DOCKER_IMAGE_NAME = 'your-docker-image-name'
-        OPENSHIFT_SERVER = 'your-openshift-server-url'
-        OPENSHIFT_TOKEN = credentials('openshift-token')
-        ARGOCD_SERVER = 'your-argocd-server-url'
-        ARGOCD_TOKEN = credentials('argocd-token')
+        DOCKER_IMAGE_NAME = 'devops'
+        //OPENSHIFT_SERVER = 'your-openshift-server-url'
+        //OPENSHIFT_TOKEN = credentials('openshift-token')
+        //ARGOCD_SERVER = 'your-argocd-server-url'
+        //ARGOCD_TOKEN = credentials('argocd-token')
         DOCKER_IMAGE_TAG = 'latest'
-        NODE_ENV = 'production'
+        //NODE_ENV = 'production'
         BRANCH_NAME = "${env.BRANCH_NAME}"
     }
     stages {
@@ -42,8 +42,46 @@ pipeline {
                 branch 'development'
             }
             steps {
-                script {
-                    deployToOpenShift('development')
+                // Install kubectl and ArgoCD CLI
+                // Log in to OpenShift cluster
+                {
+                    sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
+                }
+                // Set up ArgoCD CLI access
+                {
+                    sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
+                }
+                // Create ArgoCD application manifest
+                writeFile file: 'argocd-app.yaml', text: """
+            apiVersion: argoproj.io/v1alpha1
+            kind: Application
+            metadata:
+            name: my-app
+            spec:
+            destination:
+            server: https://kubernetes.default.svc
+            namespace: my-namespace
+            project: default
+            source:
+            repoURL: https://github.com/your-repo
+            targetRevision: HEAD
+            path: my-app
+            syncPolicy:
+            automated: {}
+            # Optionally, define the images section to specify which images to deploy
+            # images:
+            # - name: your-image-name
+            # newTag: latest
+            # source:
+            # repository: your-docker-registry/your-image-name
+            # tag: latest
+            # syncPolicy:
+            automated:
+             prune: true
+             selfHeal: true
+             """
+                {
+                    sh 'argocd apply -f argocd-app.yaml'
                 }
             }
         }
@@ -52,18 +90,95 @@ pipeline {
                 branch 'qa'
             }
             steps {
-                script {
-                    deployToOpenShift('qa')
+                // Install kubectl and ArgoCD CLI
+                // Log in to OpenShift cluster
+                {
+                    sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
+                }
+                // Set up ArgoCD CLI access
+                {
+                    sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
+                }
+                // Create ArgoCD application manifest
+                writeFile file: 'argocd-app.yaml', text: """
+            apiVersion: argoproj.io/v1alpha1
+            kind: Application
+            metadata:
+            name: my-app
+            spec:
+            destination:
+            server: https://kubernetes.default.svc
+            namespace: my-namespace
+            project: default
+            source:
+            repoURL: https://github.com/your-repo
+            targetRevision: HEAD
+            path: my-app
+            syncPolicy:
+            automated: {}
+            # Optionally, define the images section to specify which images to deploy
+            # images:
+            # - name: your-image-name
+            # newTag: latest
+            # source:
+            # repository: your-docker-registry/your-image-name
+            # tag: latest
+            # syncPolicy:
+            automated:
+             prune: true
+             selfHeal: true
+             """
+                {
+                    sh 'argocd apply -f argocd-app.yaml'
                 }
             }
         }
+
         stage('Deploy to OpenShift Production') {
             when {
                 branch 'master'
             }
             steps {
-                script {
-                    deployToOpenShift('production')
+                // Install kubectl and ArgoCD CLI
+                // Log in to OpenShift cluster
+                {
+                    sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
+                }
+                // Set up ArgoCD CLI access
+                {
+                    sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
+                }
+                // Create ArgoCD application manifest
+                writeFile file: 'argocd-app.yaml', text: """
+            apiVersion: argoproj.io/v1alpha1
+            kind: Application
+            metadata:
+            name: my-app
+            spec:
+            destination:
+            server: https://kubernetes.default.svc
+            namespace: my-namespace
+            project: default
+            source:
+            repoURL: https://github.com/your-repo
+            targetRevision: HEAD
+            path: my-app
+            syncPolicy:
+            automated: {}
+            # Optionally, define the images section to specify which images to deploy
+            # images:
+            # - name: your-image-name
+            # newTag: latest
+            # source:
+            # repository: your-docker-registry/your-image-name
+            # tag: latest
+            # syncPolicy:
+            automated:
+             prune: true
+             selfHeal: true
+             """
+                {
+                    sh 'argocd apply -f argocd-app.yaml'
                 }
             }
         }
