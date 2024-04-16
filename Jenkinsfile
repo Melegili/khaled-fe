@@ -27,15 +27,18 @@ pipeline {
                 //sh  "docker.build ${DOCKER_REGISTRY} ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 //sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
                 sh "docker login -u ${JFROG_USER} -p dckr_pat_MzuXXKgzGV6qXv9q1YvjR16XCD4 ${DOCKER_REGISTRY}"
-                script {
-                    docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
-                }
+                sh "docker build -f Dockerfile.dockerfile . -t hollz/$DOCKER_IMAGE_NAME:$BUILD_NUMBER/$env.BRANCH_NAME" 
+                //script {
+                //    docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
+                //}
             }
         }
         stage('Push Docker Image') {
             steps {
-                sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
+                
+                sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
+                
             }
         }
         stage('Deploy to OpenShift Dev') {
