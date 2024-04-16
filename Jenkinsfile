@@ -24,16 +24,13 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                
-                  sh  "docker.build ${DOCKER_REGISTRY} ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
-                }
+                sh  "docker.build ${DOCKER_REGISTRY} ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
             }
         }
         stage('Push Docker Image') {
             steps {
-                  sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
-                  sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
-                }
+                sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
+                sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
             }
         }
         stage('Deploy to OpenShift Dev') {
@@ -43,9 +40,9 @@ pipeline {
             steps {
                 // Install kubectl and ArgoCD CLI
                 // Log in to OpenShift cluster
-                    sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
+                sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
                 // Set up ArgoCD CLI access
-                    sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
+                sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
                 // Create ArgoCD application manifest
                 writeFile file: 'argocd-app.yaml', text: """
             apiVersion: argoproj.io/v1alpha1
@@ -75,7 +72,7 @@ pipeline {
              prune: true
              selfHeal: true
              """
-                    sh 'argocd apply -f argocd-app.yaml'
+                sh 'argocd apply -f argocd-app.yaml'
             }
         }
         stage('Deploy to OpenShift QA') {
@@ -85,13 +82,9 @@ pipeline {
             steps {
                 // Install kubectl and ArgoCD CLI
                 // Log in to OpenShift cluster
-                        
-                        sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
-                    
+                sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
                 // Set up ArgoCD CLI access
-                        
-                        sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
-                    
+                sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
                 // Create ArgoCD application manifest
                 writeFile file: 'argocd-app.yaml', text: """
             apiVersion: argoproj.io/v1alpha1
@@ -121,7 +114,7 @@ pipeline {
              prune: true
              selfHeal: true
              """
-                    sh 'argocd apply -f argocd-app.yaml'
+                sh 'argocd apply -f argocd-app.yaml'
             }
         }
         stage('Deploy to OpenShift Production') {
@@ -131,9 +124,9 @@ pipeline {
             steps {
                 // Install kubectl and ArgoCD CLI
                 // Log in to OpenShift cluster
-                    sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
+                sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
                 // Set up ArgoCD CLI access
-                    sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
+                sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
                 // Create ArgoCD application manifest
                 writeFile file: 'argocd-app.yaml', text: """
             apiVersion: argoproj.io/v1alpha1
@@ -163,7 +156,7 @@ pipeline {
              prune: true
              selfHeal: true
              """
-                    sh 'argocd apply -f argocd-app.yaml'
+                sh 'argocd apply -f argocd-app.yaml'
             }
         }
         //stage('Sync with ArgoCD') {
@@ -172,4 +165,5 @@ pipeline {
         //            // Code to trigger ArgoCD sync
         //        }
         //    }
-        //}
+    }   //}
+}
