@@ -5,7 +5,7 @@ pipeline {
         //REGISTRY_USER = credentials('hollz')
         //JFROG_URL = 'https://jfrog.example.com/artifactory'
         //JFROG_PASSWORD = credentials('dckr_pat_MzuXXKgzGV6qXv9q1YvjR16XCD4')
-        DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/hollz/test'
+        //DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/hollz/test'
         ANGULAR_PROJECT = 'your-angular-project-name'
         DOCKER_IMAGE_NAME = 'devops'
         //OPENSHIFT_SERVER = 'your-openshift-server-url'
@@ -27,7 +27,7 @@ pipeline {
                 //sh  "docker.build ${DOCKER_REGISTRY} ${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 //sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
                 //sh "docker login -u ${REGISTRY_USER} -p dckr_pat_MzuXXKgzGV6qXv9q1YvjR16XCD4 ${DOCKER_REGISTRY}"
-                sh "docker build -f Dockerfile.dockerfile . -t hollz/test/$DOCKER_IMAGE_NAME:$BUILD_NUMBER/$env.BRANCH_NAME" 
+                sh "docker build -f Dockerfile.dockerfile . -t hollz/test:$BUILD_NUMBER/$BRANCH_NAME" 
                 //script {
                 //    docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
                 //}
@@ -36,7 +36,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
-                sh "docker push hollz/$DOCKER_IMAGE_NAME:$BUILD_NUMBER/$env.BRANCH_NAME"
+                sh "docker push hollz/test:$BUILD_NUMBER/$BRANCH_NAME"
                 //sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
                 
             }
