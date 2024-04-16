@@ -67,13 +67,13 @@ pipeline {
                 }
             }
         }
-        stage('Sync with ArgoCD') {
-            steps {
-                script {
+        //stage('Sync with ArgoCD') {
+            //steps {
+             //   script {
                     // Code to trigger ArgoCD sync
-                }
-            }
-        }
+               // }
+          //  }
+        //}
     }    
     def deployToOpenShift(environment) {
         openshift.withCluster() {
