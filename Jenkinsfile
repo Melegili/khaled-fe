@@ -8,8 +8,8 @@ pipeline {
         //DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/hollz/test'
         //ANGULAR_PROJECT = 'your-angular-project-name'
         //DOCKER_IMAGE_NAME = 'devops'
-        //OPENSHIFT_SERVER = 'your-openshift-server-url'
-        //OPENSHIFT_TOKEN = credentials('openshift-token')
+        OPENSHIFT_SERVER = 'http://api.nt-non-ocp.neotek.sa'
+        OPENSHIFT_TOKEN = credentials('123')
         //ARGOCD_SERVER = 'your-argocd-server-url'
         //ARGOCD_TOKEN = credentials('argocd-token')
         //DOCKER_IMAGE_TAG = 'latest'
@@ -47,7 +47,8 @@ pipeline {
             steps {
                 // Install kubectl and ArgoCD CLI
                 // Log in to OpenShift cluster
-                sh "oc login --server=$OPENSHIFT_SERVER --token=$OPENSHIFT_TOKEN"
+                //sh "oc login --server=$OPENSHIFT_SERVER --token=$OPENSHIFT_TOKEN"
+                sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
                 // Set up ArgoCD CLI access
                 //sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
                 // Create ArgoCD application manifest
