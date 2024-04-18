@@ -8,8 +8,8 @@ pipeline {
         //DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/hollz/test'
         //ANGULAR_PROJECT = 'your-angular-project-name'
         //DOCKER_IMAGE_NAME = 'devops'
-        OPENSHIFT_SERVER = 'http://api.nt-non-ocp.neotek.sa'
-        OPENSHIFT_TOKEN = credentials('http://api.nt-non-ocp.neotek.sa')
+        OPENSHIFT_SERVER1 = 'http://api.nt-non-ocp.neotek.sa'
+        OPENSHIFT_TOKEN1 = credentials('http://api.nt-non-ocp.neotek.sa')
         //ARGOCD_SERVER = 'your-argocd-server-url'
         //ARGOCD_TOKEN = credentials('argocd-token')
         //DOCKER_IMAGE_TAG = 'latest'
