@@ -42,9 +42,9 @@ pipeline {
             }
         }
         stage('Deploy to OpenShift Dev') {
-            when {
-                branch 'development'
-            }
+            //when {
+             //   branch 'development'
+            //}
             steps {
                 // Install kubectl and ArgoCD CLI
                 // Log in to OpenShift cluster
