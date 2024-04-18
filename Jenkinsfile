@@ -48,9 +48,9 @@ pipeline {
             steps {
                 // Install kubectl and ArgoCD CLI
                 // Log in to OpenShift cluster
-                sh "oc login --server=${OPENSHIFT_SERVER} --token=${OPENSHIFT_TOKEN}"
+                sh "oc login --server=$OPENSHIFT_SERVER --token=$OPENSHIFT_TOKEN"
                 // Set up ArgoCD CLI access
-                sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
+                //sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
                 // Create ArgoCD application manifest
                 writeFile file: 'argocd-app.yaml', text: """
             apiVersion: argoproj.io/v1alpha1
