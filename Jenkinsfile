@@ -9,7 +9,7 @@ pipeline {
         //ANGULAR_PROJECT = 'your-angular-project-name'
         //DOCKER_IMAGE_NAME = 'devops'
         OPENSHIFT_SERVER = 'http://api.nt-non-ocp.neotek.sa'
-        OPENSHIFT_TOKEN = credentials('123')
+        OPENSHIFT_TOKEN = credentials('dfgfdggfhftyfgfdfdgdgd')
         //ARGOCD_SERVER = 'your-argocd-server-url'
         //ARGOCD_TOKEN = credentials('argocd-token')
         //DOCKER_IMAGE_TAG = 'latest'
