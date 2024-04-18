@@ -28,7 +28,7 @@ pipeline {
                 //sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
                 //sh "docker login -u $JF_REGISTRY_USER -p $JFROG_PASSWORD"
                 //sh "docker login -u hollz -p dckr_pat_MzuXXKgzGV6qXv9q1YvjR16XCD4"
-                sh "docker build -f Dockerfile.dockerfile . -t hollz/test:$BUILD_NUMBER" 
+                sh "docker build -f Dockerfile.dockerfile . -t hollz/test:$BUILD_NUMBER"
                 //script {
                 //    docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
                 //}
@@ -38,12 +38,11 @@ pipeline {
             steps {
                 sh "docker push hollz/test:$BUILD_NUMBER"
                 //sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
-                
             }
         }
         stage('Deploy to OpenShift Dev') {
             //when {
-             //   branch 'development'
+            //   branch 'development'
             //}
             steps {
                 // Install kubectl and ArgoCD CLI
@@ -52,34 +51,6 @@ pipeline {
                 // Set up ArgoCD CLI access
                 //sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
                 // Create ArgoCD application manifest
-                writeFile file: 'argocd-app.yaml', text: """
-            apiVersion: argoproj.io/v1alpha1
-            kind: Application
-            metadata:
-            name: my-app
-            spec:
-            destination:
-            server: https://kubernetes.default.svc
-            namespace: my-namespace
-            project: default
-            source:
-            repoURL: https://github.com/your-repo
-            targetRevision: HEAD
-            path: my-app
-            syncPolicy:
-            automated: {}
-            # Optionally, define the images section to specify which images to deploy
-            # images:
-            # - name: your-image-name
-            # newTag: latest
-            # source:
-            # repository: your-docker-registry/your-image-name
-            # tag: latest
-            # syncPolicy:
-            automated:
-             prune: true
-             selfHeal: true
-             """
                 sh 'argocd apply -f argocd-app.yaml'
             }
         }
@@ -94,34 +65,6 @@ pipeline {
                 // Set up ArgoCD CLI access
                 sh "argocd login --server ${ARGOCD_SERVER} --token ${ARGOCD_TOKEN}"
                 // Create ArgoCD application manifest
-                writeFile file: 'argocd-app.yaml', text: """
-            apiVersion: argoproj.io/v1alpha1
-            kind: Application
-            metadata:
-            name: my-app
-            spec:
-            destination:
-            server: https://kubernetes.default.svc
-            namespace: my-namespace
-            project: default
-            source:
-            repoURL: https://github.com/your-repo
-            targetRevision: HEAD
-            path: my-app
-            syncPolicy:
-            automated: {}
-            # Optionally, define the images section to specify which images to deploy
-            # images:
-            # - name: your-image-name
-            # newTag: latest
-            # source:
-            # repository: your-docker-registry/your-image-name
-            # tag: latest
-            # syncPolicy:
-            automated:
-             prune: true
-             selfHeal: true
-             """
                 sh 'argocd apply -f argocd-app.yaml'
             }
         }
