@@ -28,7 +28,7 @@ pipeline {
                 //sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
                 //sh "docker login -u $JF_REGISTRY_USER -p $JFROG_PASSWORD"
                 //sh "docker login -u hollz -p dckr_pat_MzuXXKgzGV6qXv9q1YvjR16XCD4"
-                sh "docker build -f Dockerfile.dockerfile . -t devops/devops/FE:$BUILD_NUMBER"
+                sh "docker build -f Dockerfile.dockerfile . -t devops/devops/fe:$BUILD_NUMBER"
                 //script {
                 //    docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
                 //}
@@ -37,7 +37,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 sh "docker login http://172.19.250.0:8081 -u admin -p password"
-                sh "ocker push devops/devops/FE:$BUILD_NUMBER"
+                sh "ocker push devops/devops/fe:$BUILD_NUMBER"
                 //sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
             }
         }
