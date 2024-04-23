@@ -28,7 +28,7 @@ pipeline {
                 //sh "docker login -u ${JFROG_USERNAME} -p ${JFROG_PASSWORD} ${DOCKER_REGISTRY}"
                 //sh "docker login -u $JF_REGISTRY_USER -p $JFROG_PASSWORD"
                 //sh "docker login -u hollz -p dckr_pat_MzuXXKgzGV6qXv9q1YvjR16XCD4"
-                sh "docker build -f Dockerfile.dockerfile . -t hollz/test:$BUILD_NUMBER"
+                sh "docker build -f Dockerfile.dockerfile . -t devops:$BUILD_NUMBER"
                 //script {
                 //    docker.build("${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}")
                 //}
