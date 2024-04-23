@@ -37,7 +37,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 sh "docker login http://172.19.250.0:8081 -u admin -p password"
-                sh "ocker push devops/devops/fe:$BUILD_NUMBER"
+                sh "docker push devops/devops/fe:$BUILD_NUMBER"
                 //sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
             }
         }
