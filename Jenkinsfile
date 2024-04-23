@@ -36,8 +36,9 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                sh "docker login http://172.19.250.0:8081 -u admin -p password"
-                sh "docker push devops/devops/fe:$BUILD_NUMBER"
+                //sh "docker login  -u admin -p password http://172.19.250.0:8081/artifactory/devops"
+                //sh "docker push devops/devops/fe:$BUILD_NUMBER"
+                sh "docker push http://172.19.250.0:8082/devops/fe:$BUILD_NUMBER"
                 //sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
             }
         }
