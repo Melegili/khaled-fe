@@ -40,7 +40,7 @@ pipeline {
                 //sh "docker push devops/devops/fe:$BUILD_NUMBER"
                 //sh "docker push devops/fe:$BUILD_NUMBER"
                 //sh  "docker.push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_NAME}:${env.BUILD_NUMBER}/${env.BRANCH_NAME}"
-                sh "docker login -u admin -p password 172.19.250.0:8082/artifactory/devops"
+                //sh "docker login -u admin -p password 172.19.250.0:8082/artifactory/devops"
                 sh "docker push 172.19.250.0:8082/devops/fe:${BUILD_NUMBER}"
             }
         }
